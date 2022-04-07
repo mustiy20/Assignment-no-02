@@ -8,18 +8,25 @@ $dbname = $_POST["db"];
 $conn = new mysqli($server, $user, $pass);
 
 // Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-echo "Connected successfully <br>";
-
+if (!$conn)
+  {
+  die('Could not connect: ' . mysql_error());
+  }
+  else{
+  echo "Connected successfully <br>";
+  }
 
 // Create database
+if($dbname==""){
 $sql = $db;
-if ($conn->query($sql) === TRUE) {
-  echo "Database created successfully";
-} else {
-  echo "database already created " ;
+if ($conn->query($sql) === TRUE)
+{
+echo "Database created";
+}
+else
+{
+echo "Error creating database: " . mysql_error();
+}
 }
 
 $conn = new mysqli($server, $user, $pass, $dbname);
@@ -36,6 +43,3 @@ if ($conn->query($sql) === TRUE) {
 } else {
   echo "Error: " . $conn->error;
 }
-
-$conn->close();
-?>

@@ -12,7 +12,7 @@
             <input type="Submit">
         </form>
         <?php
-    $unit_bill = $_POST["elec"];
+    $unit_bill = $_POST['elec'];
     $cal;
     if($unit_bill <= 50)
     {
